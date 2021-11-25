@@ -1,5 +1,6 @@
 import React, { ChangeEventHandler, useState } from "react";
 import AnnotationSystemBase from "./AnnotationSystem";
+import mediaSrcUrl_imageExample_001 from "./stories/mediaExamples/footballMatch-3k-001.jpg";
 
 interface ControlProps {
   w: number;
@@ -11,7 +12,7 @@ interface ControlReturnProps extends ControlProps {
 }
 
 const CONTROL_PROPS_INIT: ControlProps = {
-  w: 500,
+  w: 1000,
   h: 500,
 };
 
@@ -54,17 +55,35 @@ function useControl() {
   return { w, h, render };
 }
 
-export function AnnotationSystem() {
+export function AnnotationSystem_Image_Example_001() {
   const { render: renderControlElems, h, w } = useControl();
 
   return (
     <>
       {renderControlElems}
       <AnnotationSystemBase
-        mainViewportProps={{
-          h,
-          w,
-        }}
+        type="image"
+        mediaSrcUrl={mediaSrcUrl_imageExample_001}
+        viewportH={h}
+        viewportW={w}
+        labels={["Cat", "Dog"]}
+      />
+    </>
+  );
+}
+
+export function AnnotationSystem_Video_Example_001() {
+  const { render: renderControlElems, h, w } = useControl();
+
+  return (
+    <>
+      {renderControlElems}
+      <AnnotationSystemBase
+        type="video"
+        mediaSrcUrl="https://file-examples-com.github.io/uploads/2020/03/file_example_WEBM_640_1_4MB.webm"
+        viewportH={h}
+        viewportW={w}
+        labels={["Cat", "Dog"]}
       />
     </>
   );
